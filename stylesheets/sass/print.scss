@@ -1,0 +1,14 @@
+@import "bourbon/bourbon";
+@import "base/base";
+
+body {
+  -webkit-print-color-adjust: exact; //makes print version use the styles properly
+}
+
+#mood-switcher-container, header, .design-work {
+  display: none;
+}
+
+.me {
+  box-shadow: none;
+}

@@ -1,0 +1,64 @@
+.button {
+  appearance: none;
+  user-select: none;
+  background-color: $action-color;
+  border: 0;
+  outline: none;
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: 0.75em;
+  font-weight: 900;
+  line-height: $base-spacing * 6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0 $base-spacing * 2;
+  line-height: $base-spacing * 5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  box-sizing: border-box;
+  @include transition(background-color 1s $base-timing, transform 0.5s $base-timing, box-shadow 0.5s $base-timing);
+  box-shadow: 0 2px 24px rgba(#000000, .16);
+
+  &::-moz-focus-inner {
+    border: 0;
+    outline: 0;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: darken($action-color, 5%);
+    color: $white;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 24px rgba(#000000, .30);
+    transform: translateY(-4px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background-color: $action-color;
+    }
+  }
+}
+
+html {
+  &.dark {
+    .button {
+      box-shadow: 0 2px 24px rgba(#000000, .25);
+
+      &:hover {
+        box-shadow: 0 2px 24px rgba(#000000, .50);
+      }
+    }
+  }
+}

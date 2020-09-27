@@ -1,0 +1,632 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  position: relative;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #FDFAFA;
+}
+
+.fancybox-is-open {
+  .fancybox-bg{
+    @include mobile {
+      opacity: 1.0 !important;
+      background: $black !important;
+    }
+  }
+}
+
+@include keyframes(fadeInOnLoad) {
+  from { opacity:0; opacity: 1\9; /* IE9 only */}
+  to { opacity:1;}};
+@include keyframes(blurInOnLoad) {
+  from { @include filter(blur(10px));}
+  to { @include filter(blur(0));}};
+@include keyframes(slideUpOnLoad) {
+  from { @include transform(translateY(20px));}
+  to { @include transform(translateY(0));}};
+@include keyframes(scaleInOnLoad) {
+  from { @include transform(scale(0));}
+  to { @include transform(scale(1));}};
+
+.fade-in-on-load {
+  opacity: 0;
+  @include animation(fadeInOnLoad 1s ease-in-out);
+  @include animation-fill-mode(forwards);
+}
+
+.blur-in-on-load {
+  opacity: 0;
+  @include filter(blur(10px));
+  @include animation(fadeInOnLoad 1s ease-in-out, blurInOnLoad 0.75s ease-in-out);
+  @include animation-fill-mode(forwards);
+}
+
+.slide-up-on-load {
+  @include transform(translateX(0));
+  @include animation(fadeInOnLoad 1s ease-in-out, slideUpOnLoad .5s ease-in-out);
+  @include animation-fill-mode(forwards);
+}
+
+.load-one {
+  @include animation-delay(0.25s);
+}
+
+.load-two {
+  @include animation-delay(0.75s);
+}
+
+.load-three {
+  @include animation-delay(1.25s);
+}
+
+.load-four {
+  @include animation-delay(1.5s);
+}
+
+#mood-switcher-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: $base-spacing * 4;
+
+  @include mobile {
+    position: relative;
+    padding: 0;
+  }
+}
+
+#mood-switcher {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  // max-width: $base-width * 120;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    margin-bottom: $base-spacing * 6;
+  }
+
+  .switches {
+    @include display(flex);
+    @include justify-content(center);
+    border-radius: 4px;
+    box-shadow: 0 2px 24px rgba(#000000, .08);
+    @include transition(transform 0.5s $base-timing, box-shadow 0.5s $base-timing);
+
+    @include mobile {
+      border-radius: 0;
+      box-shadow: 0 2px 24px rgba(#000000, .08);
+    }
+
+    &:hover {
+      box-shadow: 0 2px 24px rgba(#000000, .16);
+      transform: translateY(-4px);
+
+      @include mobile {
+        box-shadow: 0 2px 24px rgba(#000000, .08);
+        transform: none;
+      }
+    }
+
+    a {
+      font-size: 0.75em;
+      font-weight: 900;
+      letter-spacing: 1px;
+      line-height: $base-height * 5;
+      width: $base-width * 14;
+      text-transform: uppercase;
+      z-index: 4;
+
+      @include mobile {
+        width: 50%;
+        line-height: $base-height * 6;
+        padding-bottom: $base-spacing / 2;
+      }
+
+      &.dark {
+        border-radius: 4px;
+        color: $dark-gray;
+
+        @include mobile {
+          color: $medium-gray;
+          background: transparent;
+          border-radius: 0;
+        }
+
+        &:hover {
+          color: $darkest-gray;
+
+          @include mobile {
+            color: $darkest-gray;
+          }
+        }
+      }
+
+      &.light {
+        border-radius: 4px;
+        color: $white;
+        background-color: $action-color;
+
+        @include mobile {
+          color: $darkest-gray;
+          background: transparent;
+          border-radius: 0;
+        }
+      }
+    }
+
+    .border {
+      position: absolute;
+      top: 0;
+      bottom: 0px;
+      right: 0;
+      left: 50%;
+      width: 50%;
+      // border-bottom: 4px solid $action-color;
+      background-color: $action-color;
+      border-radius: 0 4px 4px 0;
+      z-index: 3;
+      @include transition(left $base-duration $base-timing);
+
+      @include mobile {
+        border-radius: 0;
+        background-color: transparent;
+        border-bottom: 4px solid $action-color;
+      }
+    }
+  }
+}
+
+header {
+  @include display(flex);
+  @include justify-content(center);
+  padding: $base-spacing * 4;
+  margin-bottom: $base-spacing * 4;
+
+  @include mobile {
+    display: block;
+    padding: 0;
+  }
+
+  .tame-the-beast {
+    @include display(flex);
+  }
+
+  .right {
+    margin-left: auto;
+
+    @include mobile{
+      margin: 0;
+    }
+
+    .button {
+      @include mobile {
+        position: fixed;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        border-radius: 0;
+        line-height: $base-spacing * 6;
+        z-index: 69;
+        box-shadow: 0 -2px 24px rgba(#000000, .16);
+      }
+
+      &:hover {
+        @include mobile {
+          box-shadow: 0 -2px 24px rgba(#000000, .30);
+        }
+      }
+    }
+  }
+}
+
+.me {
+  opacity: 0;
+  transform: scale(0);
+  @include filter(blur(10px));
+  @include animation(
+    fadeInOnLoad .5s ease-in-out,
+    blurInOnLoad 1.25s ease-in-out,
+    scaleInOnLoad 1s ease-in-out);
+  @include animation-fill-mode(forwards);
+  // Post Animation Styles
+  width: $base-width * 15;
+  height: $base-width * 15;
+  border-radius: 100%;
+  margin-bottom: $base-spacing * 5;
+  box-shadow: 0 2px 24px rgba(#000000, .16);
+
+  @include mobile {
+    // display: block;
+    // margin: 0 auto $base-spacing * 3 auto;
+    margin-bottom: $base-spacing * 3;
+  }
+}
+
+.about {
+  @include mobile {
+    text-align: center;
+  }
+}
+
+.tame-the-beast {
+  position: relative;
+  max-width: $base-width * 120;
+  margin: 0 auto;
+
+  @include tablet {
+    margin: 0 $base-spacing * 4;
+  }
+
+  @include mobile {
+    margin: 0 $base-spacing * 2;
+  }
+}
+
+
+main {
+  position: relative;
+  // margin: $base-spacing * 10 0;
+  margin: $base-spacing * 8 0;
+
+  @include mobile {
+    padding-bottom: $base-spacing * 14;
+  }
+
+  nav {
+    position: relative;
+
+    @include mobile {
+      margin-bottom: $base-spacing * 2;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      border-radius: 4px;
+      z-index: 2;
+      background-color: $light-gray;
+    }
+
+    .border-container {
+      position: relative;
+      @include display(flex);
+      @include justify-content(center);
+
+      .border {
+        position: absolute;
+        bottom: -4px;
+        right: 0;
+        left: 0;
+        width: 50%;
+        height: 4px;
+        background: $action-color;
+        border-radius: 4px 0 0 4px;
+        z-index: 3;
+        @include transition(all $base-duration $base-timing);
+      }
+
+      &.last {
+        .border {
+          left: 50%;
+          border-radius: 0 4px 4px 0;
+        }
+      }
+    }
+
+    a {
+      display: block;
+      width: 50%;
+      font-size: $base-font-size * 2;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: $medium-gray;
+      text-transform: uppercase;
+      // margin-right: $base-spacing * 5;
+      padding-bottom: $base-spacing * 2;
+      margin-bottom: -2px;
+
+      @include mobile {
+        font-size: $base-font-size * 1.5;
+        text-align: center;
+      }
+
+      &:hover {
+        color: $darkest-gray;
+      }
+
+      &.current {
+        color: $black;
+      }
+    }
+  }
+
+  #work {
+    @include display(flex);
+    @include justify-content(space-between);
+    @include flex-wrap(wrap);
+    @include transition(opacity 0.5s $base-timing);
+    width: 0;
+    height: 0;
+    min-height: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    &.visible {
+      width: auto;
+      height: auto;
+      visibility: visible;
+      opacity: 1.0;
+    }
+
+    h3 {
+      display: block;
+    }
+
+    article {
+      position: relative;
+      display: block;
+      width: 46%;
+      // height: $base-height * 50;
+      // margin-top: $base-spacing * 8;
+      // margin-top: 10%;
+      // background: $white;
+      // box-shadow: 0 2px 24px rgba(#000000, .16);
+      // @include transition(all 0.5s $base-timing);
+
+      @include mobile {
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+
+      a {
+        position: relative;
+        display: block;
+        margin-top: $base-spacing * 8;
+        box-shadow: 0 2px 24px rgba(#000000, .16);
+        @include transition(box-shadow 0.5s $base-timing, transform 0.5s $base-timing);
+
+        @include mobile {
+          margin-top: $base-spacing * 3;
+        }
+
+        img {
+          display: block;
+        }
+      }
+
+      .caption {
+        display: none;
+        text-align: center;
+
+        h5 {
+          margin-top: $base-spacing * 2;
+        }
+
+        h5,h6 {
+          @include transition(transform 0.5s $base-timing);
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        a {
+          box-shadow: 0 2px 24px rgba(#000000, .30);
+          @include transform(translateY(-4px));
+        }
+
+        .caption {
+          h5,h6 {
+            transform: translateY(-4px);
+          }
+        }
+      }
+    }
+  }
+
+  #resume {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    @include transition(opacity 0.5s $base-timing);
+
+    @include mobile {
+      overflow: hidden;
+    }
+
+    &.visible {
+      width: auto;
+      height: auto;
+      visibility: visible;
+      opacity: 1.0;
+    }
+
+    article {
+      padding: $base-spacing * 8 0;
+      border-bottom: 2px solid $light-gray;
+      border-bottom: 2px solid rgba($action-color, 0.7);
+      border-bottom: 2px solid $action-color;
+
+      @include mobile {
+        padding: $base-spacing * 4 0;
+      }
+
+      .line-em-up {
+        @include display(flex);
+        @include justify-content(space-between);
+
+        @include tablet {
+          display: block;
+        }
+
+        @include mobile {
+          display: block;
+        }
+
+        h4 {
+          @include tablet {
+            margin: $base-spacing / 2 0 $base-spacing 0;
+          }
+
+          @include mobile {
+            margin: $base-spacing / 2 0 $base-spacing 0;
+          }
+        }
+      }
+
+      .design-work {
+        margin: $base-spacing * 5 0;
+
+        @include mobile {
+          margin: $base-spacing * 4 0;
+        }
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        h4 {
+          font-weight: 800;
+          font-size: $base-font-size * 1.5;
+
+          @include mobile {
+            font-size: $base-font-size * 1.15;
+          }
+        }
+
+        p {
+          margin: $base-spacing 0;
+        }
+
+      }
+
+      .tools {
+        // max-width: 75%;
+        margin: $base-spacing * 3 0;
+        margin-bottom: 0;
+        @include mobile {
+          margin: $base-spacing * 2 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+html {
+  &.dark {
+    body {
+      background-color: $black;
+    }
+
+    #mood-switcher {
+      .switches {
+        box-shadow: 0 2px 24px rgba(#000000, 0.25);
+
+        a {
+          &.light {
+            color: $dark-gray;
+            background: rgba($white, 0.025);
+
+            @include mobile {
+              background: transparent;
+            }
+
+            &:hover {
+              color: $light-gray;
+
+              @include mobile {
+                color: $light-gray;
+
+              }
+            }
+          }
+
+          &.dark {
+            color: $white;
+            background-color: $action-color;
+
+            @include mobile {
+              color: $lightest-gray;
+              background: transparent;
+            }
+          }
+        }
+
+        .border {
+          left: 0;
+          border-radius: 4px 0 0 4px;
+
+          @include mobile {
+            border-radius: 0;
+          }
+        }
+      }
+    }
+
+    .me {
+      box-shadow: 0 2px 24px rgba(#000000, 0.25);
+    }
+
+    main {
+      position: relative;
+      // margin: $base-spacing * 10 0;
+      margin: $base-spacing * 8 0;
+
+      nav {
+        &:after {
+          background-color: lighten($black, 5);
+        }
+
+        a {
+          color: $darkest-gray;
+
+          &:hover {
+            color: $light-gray;
+          }
+
+          &.current {
+            color: $white;
+          }
+        }
+      }
+
+      #work {
+
+      }
+
+      #resume {
+        article {
+          // border-color: lighten($black, 5);
+        }
+      }
+    }
+  }
+}

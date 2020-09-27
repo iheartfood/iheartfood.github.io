@@ -1,0 +1,272 @@
+html {
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  -webkit-font-smoothing: antialiased; // Render fonts as they are used in design
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  font-family: $heading-font-family;
+  font-size: $base-font-size;
+  line-height: $heading-line-height;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0;
+
+  span {
+    color: $action-color;
+  }
+}
+
+h1 {
+  font-size: $base-font-size * 2.5;
+  font-weight: 900;
+
+  @include mobile {
+    font-size: $base-font-size * 2;
+  }
+
+  &.section-heading {
+    // padding-bottom: $base-spacing * 2;
+    border-bottom: 4px solid $action-color;
+  }
+}
+
+h2 {
+  font-size: $base-font-size * 2;
+  font-weight: 900;
+
+  @include mobile {
+    font-size: $base-font-size * 1.75;
+  }
+
+  &.sub {
+    font-weight: 400;
+    font-weight: 500; // UNTIL GOOGLE FIXES THE 400 font-weight BUG
+    color: $darkest-gray;
+  }
+
+  &.section-heading {
+    padding-bottom: $base-spacing * 2;
+    border-bottom: 4px solid $action-color;
+  }
+}
+
+h3 {
+  font-size: $base-font-size * 1.75;
+  color: $action-color;
+  font-weight: 900;
+  margin-top: $base-spacing * 8;
+  color: $black;
+
+  @include mobile {
+    font-size: $base-font-size * 1.25;
+    margin-top: $base-spacing * 4;
+  }
+}
+
+h4 {
+  font-size: $base-font-size * 1.25;
+  font-weight: 500;
+  color: $darkest-gray;
+
+  @include mobile {
+    font-size: $base-font-size * 1.15;
+  }
+
+  &.section-heading {
+    padding-bottom: $base-spacing * 2;
+    border-bottom: 4px solid $action-color;
+
+    @include mobile {
+      margin-bottom: $base-spacing * 2;
+    }
+  }
+}
+
+h5 {
+  color: $action-color;
+  color: $black;
+
+  @include mobile {
+    font-size: $base-font-size / 1.25;
+  }
+}
+
+p {
+  font-size: $base-font-size * 1.25;
+  font-weight: 500;
+  color: $dark-gray;
+  margin: $base-spacing * 4 0;
+  color: $darkest-gray;
+  text-align: justify;
+
+  @include mobile {
+    font-size: $base-font-size;
+    margin: $base-spacing * 3 0;
+  }
+
+  &.bigger {
+    font-size: $base-font-size * 1.5;
+    color: $dark-gray;
+    font-weight: 400;
+    font-weight: 500; // UNTIL GOOGLE FIXES THE 400 font-weight BUG
+    text-align: justify;
+
+    @include mobile {
+      font-size: $base-font-size * 1.15;
+    }
+  }
+
+  a {
+    font-weight: 600;
+    @include transition(all 0.5s $base-timing);
+    border-bottom: 1px dotted rgba($action-color, 0.70);
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-bottom: 1px solid rgba($action-color, 0.70);
+    }
+
+    &.button {
+      margin: $base-spacing $base-spacing $base-spacing 0;
+      border: none;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+    color: $darkest-gray;
+  }
+}
+
+ul {
+  margin: $base-spacing * 3 0;
+
+  @include mobile {
+    margin: $base-spacing * 2 0;
+  }
+
+  li {
+    @include display(flex);
+    @include justify-content(flext-start);
+    font-size: $base-font-size * 1.25;
+    font-weight: 500;
+    color: $dark-gray;
+    margin: $base-spacing 0 $base-spacing $base-spacing * 3;
+    color: $darkest-gray;
+
+    @include mobile {
+      font-size: $base-font-size;
+      margin: $base-spacing * 2 0;
+    }
+
+    &:before {
+      content: '';
+      display: inline-block;
+      display: block;
+      width: $base-width;
+      height: $base-height;
+      min-width: $base-width;
+      min-height: $base-height;
+      border-radius: $base-width;
+      background-color: $black;
+      margin-top: $base-spacing * 1.5;
+      margin-right: $base-spacing * 2;
+      background-color: $red;
+
+      @include mobile {
+        width: $base-width / 1.5;
+        height: $base-height / 1.5;
+        min-width: $base-width / 1.5;
+        min-height: $base-height / 1.5;
+        margin-top: $base-spacing * 1.25;
+        margin-right: $base-spacing;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+a {
+  color: $action-color;
+  text-decoration: none;
+  @include transition(color 0.5s $base-timing);
+  outline: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: darken($action-color, 10%);
+  }
+}
+
+hr {
+  border-bottom: $base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: $base-spacing 0;
+}
+
+html {
+  &.dark {
+    color: $white;
+
+    h2 {
+      &.sub {
+        color: $lightest-gray;
+        color: $light-gray; // UNTIL GOOGLE FIXES THE 400 font-weight BUG
+      }
+    }
+
+    h3 {
+      color: $white;
+    }
+
+    h4 {
+      color: $light-gray;
+    }
+
+    h5 {
+      color: $white;
+    }
+
+    p {
+      color: $lightest-gray;
+
+      strong {
+        color: $white;
+      }
+
+      &.bigger {
+        color: $light-gray;
+        color: $medium-gray; // UNTIL GOOGLE FIXES THE 400 font-weight BUG
+      }
+    }
+
+    ul {
+      margin: $base-spacing * 3 0;
+
+      @include mobile {
+        margin: $base-spacing * 2 0;
+      }
+
+      li {
+        color: $lightest-gray;
+
+        &:before {
+          background-color: $action-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+// Typography
+$base-font-family: $font-stack-raleway;
+$heading-font-family: $font-stack-raleway;
+
+// Font Sizes
+$base-font-size: 16px;
+$form-base-font-size: 24px;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 4px;
+$base-spacing: 8px;
+$base-width: 8px;
+$base-height: 8px;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Colors
+$blue: #439ce6;
+$red: #E64343;
+$black: #202121;
+$darkest-gray: #525252;
+$dark-gray: #868787;
+$medium-gray: #c5c5c6;
+$light-gray: #ebebeb;
+$lightest-gray: #f7f9fa;
+$white: #ffffff;
+
+
+// Font Colors
+$base-font-color: $black;
+$action-color: $red;
+
+// Border
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: $white;
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Focus
+$focus-outline-color: transparentize($action-color, 0.4);
+$focus-outline-width: 3px;
+$focus-outline: $focus-outline-width solid $focus-outline-color;
+$focus-outline-offset: 2px;
+
+// Animations
+$base-duration: 0.25s;
+$base-timing: ease;
