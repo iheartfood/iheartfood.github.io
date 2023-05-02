@@ -1,14 +1,68 @@
 @import "bourbon/bourbon";
 @import "base/base";
 
-body {
-  -webkit-print-color-adjust: exact; //makes print version use the styles properly
-}
+html {
+  -webkit-print-color-adjust: exact !important; //makes print version use the styles properly
+  print-color-adjust: exact !important;  //makes print version use the styles properly
 
-#mood-switcher-container, header, .design-work {
-  display: none;
+  &.dark {
+    color: $black;
+
+    h2 {
+      &.sub {
+        color: $darkest-gray;
+        font-weight: 400;
+      }
+    }
+
+    h3 {
+      color: $black;
+    }
+
+    h4 {
+      color: $darkest-gray;
+    }
+
+    h5 {
+      color: $black;
+    }
+
+    p {
+      color: $darkest-gray;
+
+      strong {
+        color: $black;
+      }
+
+      &.bigger {
+        color: $black;
+      }
+    }
+
+    ul {
+      li {
+        color: $darkest-gray;
+
+        &:before {
+          background-color: $action-color;
+        }
+      }
+    }
+
+    .me {
+      box-shadow: none;
+    }
+  }
+
+  main {
+    margin: $base-spacing * 4 0;
+  }
 }
 
 .me {
   box-shadow: none;
+}
+
+#mood-switcher-container, header, .design-work {
+  display: none;
 }

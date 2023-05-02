@@ -262,9 +262,9 @@ header {
 }
 
 .about {
-  @include mobile {
-    text-align: center;
-  }
+  // @include mobile {
+  //   text-align: center;
+  // }
 }
 
 .tame-the-beast {
@@ -288,6 +288,7 @@ main {
   margin: $base-spacing * 8 0;
 
   @include mobile {
+    margin: $base-spacing * 4 0;
     padding-bottom: $base-spacing * 14;
   }
 
@@ -597,8 +598,6 @@ html {
 
     main {
       position: relative;
-      // margin: $base-spacing * 10 0;
-      margin: $base-spacing * 8 0;
 
       nav {
         &:after {
